@@ -1,22 +1,36 @@
-/* Estilos básicos para o portfólio */
+/* Estilo personalizado inspirado no filme "Aranhaverso" */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rubik:wght@400;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Rubik', sans-serif;
 }
 
 body {
-  background-color: #f4f4f4;
-  color: #333;
+  background: radial-gradient(circle, #0d0d0d 0%, #1a1a1a 100%);
+  color: #ffffff;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 header {
-  background-color: #222;
-  color: white;
+  background-color: #111;
+  color: #ff2167;
   padding: 1rem 0;
+  box-shadow: 0 2px 10px rgba(255, 33, 103, 0.5);
+  animation: glitch 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch {
+  0% { transform: skew(0.5deg); }
+  20% { transform: skew(-0.5deg); }
+  40% { transform: skew(1deg); }
+  60% { transform: skew(-1deg); }
+  80% { transform: skew(0.5deg); }
+  100% { transform: skew(0deg); }
 }
 
 nav {
@@ -28,6 +42,14 @@ nav {
   align-items: center;
 }
 
+nav h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  color: #00cfff;
+  text-shadow: 2px 2px 0 #ff2167;
+}
+
 nav ul {
   list-style: none;
   display: flex;
@@ -35,19 +57,61 @@ nav ul {
 }
 
 nav a {
-  color: white;
+  color: #ff2167;
   text-decoration: none;
+  font-weight: bold;
   transition: color 0.3s ease;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: #00ffb3;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 nav a:hover {
-  color: #00bcd4;
+  color: #00ffb3;
 }
 
 section {
   padding: 2rem 5%;
   max-width: 1100px;
   margin: 0 auto;
+  animation: fadeIn 1s ease-out both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: #00cfff;
+  border-left: 4px solid #ff2167;
+  padding-left: 0.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px #ff2167;
 }
 
 .grid {
@@ -57,16 +121,66 @@ section {
 }
 
 .projeto {
-  background-color: white;
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
   padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 255, 179, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.projeto::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.05) 2px,
+    rgba(255, 255, 255, 0.05) 4px
+  );
+  transform: rotate(25deg);
+  animation: scan 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% { transform: rotate(25deg) translateY(-100%); }
+  100% { transform: rotate(25deg) translateY(100%); }
+}
+
+.projeto:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(255, 33, 103, 0.5);
+}
+
+.projeto h3 {
+  color: #ff2167;
+}
+
+.projeto a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #00ffb3;
+  text-decoration: underline;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+  color: #ddd;
 }
 
 footer {
   text-align: center;
   padding: 1rem;
-  background-color: #222;
-  color: white;
+  background-color: #111;
+  color: #888;
+  font-size: 0.9rem;
   margin-top: 2rem;
+  animation: glitch 2s infinite linear alternate-reverse;
 }
